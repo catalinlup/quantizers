@@ -1,5 +1,5 @@
 {
-    "INPUT_FILE": "scratch/clupau/faiss.msmarco-v1-passage.aggretriever-cocondenser.h5",
+    "INPUT_FILE": "/scratch/clupau/faiss.msmarco-v1-passage.aggretriever-cocondenser.h5",
     "OUTPUT_FILE": "/scratch/clupau/agg_m_6_k_256_4000000.pickle",
     "TRAINING_DATASET": "vectors",
     "DOCIDS_DATASET": "docids",
