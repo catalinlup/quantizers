@@ -54,7 +54,7 @@ class FaissPQ(Quantizer):
         Trains the quantizer on the provided dataset, by taking a sample of the provided size.
         If no sample size is provided, it will train the quantizer on the entire dataset.
         """
-        print('Trainining started')
+        print('Trainining started', flush=True)
         time_st = time.time()
 
         sample: np.ndarray = sample_from_dataset_vectors(dataset, sample_size)
@@ -64,7 +64,7 @@ class FaissPQ(Quantizer):
 
         time_end = time.time()
 
-        print(f'Training ended. Ellapsed time (s): {time_end - time_st}')
+        print(f'Training ended. Ellapsed time (s): {time_end - time_st}', flush=True)
 
 
     def quantize(self, dataset: h5py.Dataset, batch_size: int) -> np.ndarray:
@@ -85,7 +85,7 @@ class FaissPQ(Quantizer):
         code_batches = []
 
         for bi in range(0, num_batches):
-            print(f'{bi + 1} / {num_batches}')
+            print(f'{bi + 1} / {num_batches}', flush=True)
 
             start_ms = time.time()
 
@@ -102,7 +102,7 @@ class FaissPQ(Quantizer):
 
             end_ms = time.time()
 
-            print(f'Elleapsed time(s) {end_ms - start_ms}')
+            print(f'Elleapsed time(s) {end_ms - start_ms}', flush=True)
 
         
         return np.concatenate(code_batches, axis=0)

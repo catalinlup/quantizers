@@ -25,7 +25,6 @@ M = int(params.get('M'))
 K = int(params.get('K'))
 
 with h5py.File(INPUT_FILE) as fp:
-    print(fp.keys())
     training_dataset = fp[TRAINING_DATASET]
     full_dataset = fp[FULL_DATASET]
 
@@ -38,7 +37,6 @@ with h5py.File(INPUT_FILE) as fp:
     codebook = quantizer.get_codebook()
     q_codes = quantizer.quantize(full_dataset, BATCH_SIZE)
 
-    print(q_codes.shape)
 
     index_obj = {
         'codebook': codebook,
