@@ -9,10 +9,15 @@ import numpy as np
 parser = argparse.ArgumentParser(prog="QuantizersH5.py", description="Quantization software that works with H5", epilog="")
 
 parser.add_argument("param_file")
+parser.add_argument("base_input_folder")
+parser.add_argument("base_output_folder")
 
 args = parser.parse_args()
 
 params = json.load(open(args.param_file, 'r'))
+
+BASE_INPUT_FOLDER = args.base_input_folder
+BASE_OUTPUT_FOLDER = args.base_output_folder
 
 INPUT_FILE = params.get('INPUT_FILE')
 OUTPUT_FILE = params.get('OUTPUT_FILE')
@@ -24,7 +29,7 @@ BATCH_SIZE = int(params.get('BATCH_SIZE'))
 M = int(params.get('M'))
 K = int(params.get('K'))
 
-with h5py.File(INPUT_FILE) as fp:
+with h5py.File(os.path.join(BASE_INPUT_FOLDER, INPUT_FILE)) as fp:
     training_dataset = fp[TRAINING_DATASET]
     full_dataset = fp[FULL_DATASET]
 
@@ -56,6 +61,6 @@ with h5py.File(INPUT_FILE) as fp:
 
     # os.makedirs(OUTPUT_FOLDER, exist_ok=True)
     # output_path = os.path.join(OUTPUT_FILE, 'quantized_index.pickle')
-    pickle.dump(index_obj, open(OUTPUT_FILE, 'wb'))
+    pickle.dump(index_obj, open(os.path.join(BASE_OUTPUT_FOLDER, OUTPUT_FILE), 'wb'))
 
 
