@@ -30,6 +30,9 @@ M = int(params.get('M'))
 K = int(params.get('K'))
 
 with h5py.File(os.path.join(BASE_INPUT_FOLDER, INPUT_FILE)) as fp:
+
+    print(f'Running {INPUT_FILE}', flush=True)
+
     training_dataset = fp[TRAINING_DATASET]
     full_dataset = fp[FULL_DATASET]
 
